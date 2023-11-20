@@ -1,0 +1,107 @@
+/* 공통 스타일 지정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* vh는 뷰포트의 높이 기준 -뷰포트의 100% */
+    height: 100vh;
+    width: 100%;
+    background-color: darkgreen;
+    /* body 아이템들 flex로 정렬 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* background-color 설정하지 않았기 때문에 테두리만 나타남 */
+.wrapper {
+    height: 300px;
+    width: 250px;
+    border: 5px solid #61412D;
+    /* door와 knob를 position: absolute로 설정하기 위해서 */
+    position: relative;
+    perspective: 1000px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    /* 가득 채울때까지 확대 */
+    object-fit: cover;
+}
+
+.door{
+    background-color: #61412D;
+    height: 100%;
+    /* 부모 요소 크기의 절반 크기 */
+    width: 50%;
+    /* wrapper 기준으로 포지션 */
+    position: absolute;
+    /* door shape 아이템 flex 정렬*/
+    display: flex;
+    /* 세로 정렬 */
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#left-door {
+    /* 부모 요소에서 top, left 거리 */
+    top: 0;
+    left: 0;
+    border-right: 1px solid black;
+    /* 중심축 왼쪽 */
+    transform-origin: left;
+    /* 애니메이션 속도 */
+    transition: transform 0.5s;
+}
+
+#right-door {
+    /* 부모 요소에서 top, right 거리 */
+    top: 0;
+    right: 0;
+    border-left: 1px solid black;
+    /* 중심축 오른쪽 */
+    transform-origin: right;
+    /* 애니메이션 속도 */
+    transition: transform 0.5s;
+}
+
+.shape {
+    border: 4px solid black;
+    width: 100px;
+    height: 130px;
+}    
+
+/* 문고리 공통 스타일 */
+.knob {
+    width: 10px;
+    height: 50px;
+    background-color: gold;
+    /* wrapper 기준으로 포지션 */
+    position: absolute;
+}
+
+/* left, right 문고리 위치 지정 */
+#left-knob {
+    top: 50%;
+    right: 10px;
+}
+
+#right-knob {
+    top: 50%;
+    left: 10px;
+}
+
+/* rotate- 각도, rotateY- 가로축으로 회전 */
+/* .wrapper에 마우스 hover, left door -ndeg(-y축(왼쪽)으로) */
+.wrapper:hover #left-door {
+    transform: rotateY(-140deg);
+}
+/* .wrapper에 마우스 hover, right door -ndeg(+y축(오른쪽)으로) */
+.wrapper:hover #right-door {
+    transform: rotateY(140deg);
+}
